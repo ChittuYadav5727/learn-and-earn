@@ -1,0 +1,1 @@
+export const CERTIFICATION_PASS_THRESHOLD = 70;
