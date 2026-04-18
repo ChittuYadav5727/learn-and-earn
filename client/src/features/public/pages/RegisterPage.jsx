@@ -104,6 +104,7 @@ export default function RegisterPage() {
         description: 'Configure the provider auth URL on the backend to enable this flow.',
         tone: 'error',
       });
+      navigate('/', { replace: true });
     }
   }
 

@@ -45,6 +45,7 @@ export default function LoginPage() {
         description: 'Add the provider auth URL in the server environment to enable social login.',
         tone: 'error',
       });
+      navigate('/', { replace: true });
     }
   }
 

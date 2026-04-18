@@ -1,22 +1,31 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 const ToastContext = createContext(null);
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
 
-  function dismissToast(id) {
+  const dismissToast = useCallback((id) => {
     setToasts((current) => current.filter((toast) => toast.id !== id));
-  }
+  }, []);
 
-  function showToast({ title, description = '', tone = 'info' }) {
+  const showToast = useCallback(({ title, description = '', tone = 'info' }) => {
     const id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-    setToasts((current) => [...current, { id, title, description, tone }]);
+    setToasts((current) => {
+      const alreadyVisible = current.some((toast) => toast.title === title && toast.description === description);
+      if (alreadyVisible) {
+        return current;
+      }
+
+      return [...current, { id, title, description, tone }].slice(-4);
+    });
     window.setTimeout(() => dismissToast(id), 3600);
-  }
+  }, [dismissToast]);
+
+  const value = useMemo(() => ({ showToast }), [showToast]);
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <ToastContext.Provider value={value}>
       {children}
       <div className="toast-stack" aria-live="polite" aria-atomic="true">
         {toasts.map((toast) => (

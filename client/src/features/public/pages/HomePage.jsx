@@ -59,7 +59,22 @@ export default function HomePage() {
       <main className="public-main">
         <HeroCarousel slides={content.carousel} stats={content.stats} />
 
-        <section className="showcase-grid feature-showcase" id="platform">
+        <section className="value-strip" id="platform">
+          <article className="value-strip-card">
+            <span className="eyebrow">Platform clarity</span>
+            <strong>Learning, earning, and provider workflows separated cleanly.</strong>
+          </article>
+          <article className="value-strip-card">
+            <span className="eyebrow">Retention loop</span>
+            <strong>Progress, rewards, and next actions keep users engaged beyond signup.</strong>
+          </article>
+          <article className="value-strip-card">
+            <span className="eyebrow">Trust layer</span>
+            <strong>JWT auth, verified providers, and API-backed experiences ready for production.</strong>
+          </article>
+        </section>
+
+        <section className="showcase-grid feature-showcase">
           <article className="surface-card insight-card">
             <p className="eyebrow">Product vision</p>
             <h2>{content.hero.title}</h2>
@@ -82,7 +97,7 @@ export default function HomePage() {
             <div className="progress-meter">
               <span style={{ width: `${content.dashboardPreview.progress || 0}%` }} />
             </div>
-            <div className="stats-row compact-stats">
+            <div className="stats-row compact-stats dashboard-preview-metrics">
               <article className="metric-card elevated">
                 <span className="metric-label">Points</span>
                 <strong className="metric-value">{content.dashboardPreview.points}</strong>
@@ -106,7 +121,7 @@ export default function HomePage() {
           <div className="section-heading">
             <div>
               <p className="eyebrow">Learning and earning</p>
-              <h2>Curated paths with measurable progress</h2>
+              <h2>Productized tracks with clearer decisions and better pacing</h2>
             </div>
             <SocialButtons title="Learn & Earn" />
           </div>
@@ -124,16 +139,19 @@ export default function HomePage() {
               </div>
               <div className="card-grid">
                 {content.featuredLearn.map((item) => (
-                  <article className="content-card course-card" key={item.id}>
-                    <p className="eyebrow">{item.level}</p>
+                  <article className="content-card course-card premium-card" key={item.id}>
+                    <div className="course-card-head">
+                      <p className="eyebrow">{item.level}</p>
+                      <span className="card-chip">{item.duration}</span>
+                    </div>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                     <div className="progress-meter">
                       <span style={{ width: `${item.progress || 0}%` }} />
                     </div>
                     <div className="info-row">
-                      <strong>{item.duration}</strong>
-                      <span>{item.progress || 0}% progress</span>
+                      <strong>{item.progress || 0}% complete</strong>
+                      <span>Portfolio milestone path</span>
                     </div>
                   </article>
                 ))}
@@ -152,13 +170,17 @@ export default function HomePage() {
               </div>
               <div className="stack-list">
                 {content.featuredEarn.map((item) => (
-                  <article className="content-card earn-card" key={item.id}>
-                    <div className="info-row">
+                  <article className="content-card earn-card premium-card" key={item.id}>
+                    <div className="info-row earn-card-head">
                       <p className="eyebrow">{item.type}</p>
-                      <strong>{item.reward}</strong>
+                      <span className="reward-pill">{item.reward}</span>
                     </div>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
+                    <div className="earn-card-footer">
+                      <span>Verified payout path</span>
+                      <strong>Fast-track visibility</strong>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -170,7 +192,7 @@ export default function HomePage() {
           <div className="section-heading">
             <div>
               <p className="eyebrow">Video library</p>
-              <h2>Watch the product story, learning loops, and provider playbooks</h2>
+              <h2>Guided walkthroughs for UX, growth loops, and hiring workflows</h2>
             </div>
           </div>
           <div className="card-grid video-grid">
@@ -201,8 +223,8 @@ export default function HomePage() {
             ))}
             <article className="surface-card community-card">
               <p className="eyebrow">Provider-ready experience</p>
-              <h2>Built for demos, portfolios, and deployment.</h2>
-              <p>JWT auth, secure APIs, validated requests, Mongo-backed workflows, and a frontend that feels launch-ready.</p>
+              <h2>Built to look credible in a portfolio and behave credibly in production.</h2>
+              <p>Clear IA, stronger CTA placement, calmer motion, better density, and backend-backed UX instead of placeholder polish.</p>
               <div className="hero-actions">
                 <Link className="primary-button" to="/register">
                   Create account

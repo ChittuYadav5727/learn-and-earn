@@ -59,6 +59,13 @@ copy server\\.env.example server\\.env
 
 Update the values if your MongoDB or frontend URL differs.
 
+Production deployment values:
+
+- Vercel frontend: set `VITE_API_URL=https://your-render-service.onrender.com/api`
+- Render backend: set `CLIENT_URL=https://your-vercel-app.vercel.app`
+- Optional preview deployments: set `ALLOW_VERCEL_PREVIEWS=true`
+- MongoDB Atlas: set `MONGODB_URI=mongodb+srv://...`
+
 ### 3. Start MongoDB
 
 Use a local MongoDB instance or point `MONGODB_URI` to MongoDB Atlas.
