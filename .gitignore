@@ -64,19 +64,20 @@ out
 .env
 .env.*
 !.env.example
-client/.env
-server/.env
+apps/frontend/.env
+apps/backend/.env
 
 # OS / editor
 .DS_Store
 .vscode/
 nul
 
-# Local app data and tools
-data/mongodb/db/
-data/mongodb/*.log*
-tools/mongodb-win32-*/
-tools/mongodb.zip
+# Local app runtime / infra
+runtime/logs/
+infra/data/mongodb/db/
+infra/data/mongodb/*.log*
+infra/tools/mongodb-win32-*/
+infra/tools/mongodb.zip
 
 # Misc package artifacts
 *.tgz

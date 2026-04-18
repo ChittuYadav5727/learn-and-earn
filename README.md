@@ -13,9 +13,13 @@ Production-structured full-stack portfolio project with strict role separation f
 
 ## Workspace structure
 
-- `client/` React frontend with separate public, learner, and provider experiences
-- `server/` Express API with modular controllers, services, middleware, validators, and MongoDB models
+- `apps/frontend/` React + Vite frontend
+- `apps/backend/` Express + MongoDB backend
 - `docs/` project notes
+- `docs/deployment.md` deployment setup for Vercel + backend hosting
+- `infra/data/` local database storage for development
+- `infra/tools/` local infrastructure tooling
+- `runtime/logs/` local development logs
 
 ## Features
 
@@ -46,15 +50,16 @@ Production-structured full-stack portfolio project with strict role separation f
 ### 1. Install dependencies
 
 ```bash
-npm install --prefix client
-npm install --prefix server
+npm install
+npm install --prefix apps/frontend
+npm install --prefix apps/backend
 ```
 
 ### 2. Configure environment
 
 ```bash
-copy client\\.env.example client\\.env
-copy server\\.env.example server\\.env
+copy apps\\frontend\\.env.example apps\\frontend\\.env
+copy apps\\backend\\.env.example apps\\backend\\.env
 ```
 
 Update the values if your MongoDB or frontend URL differs.
@@ -73,7 +78,7 @@ Use a local MongoDB instance or point `MONGODB_URI` to MongoDB Atlas.
 ### 4. Optional demo seed
 
 ```bash
-npm run server:seed
+npm run backend:seed
 ```
 
 Seeded demo accounts:
@@ -82,19 +87,34 @@ Seeded demo accounts:
 - Provider: `demo.provider@learnandearn.com` / `password123`
 - Admin: `demo.admin@learnandearn.com` / `password123`
 
-### 5. Run the apps
-
-Terminal 1:
+### 5. Run the workspace
 
 ```bash
-npm run server:dev
+npm run dev
 ```
 
-Terminal 2:
+Or run each app independently:
 
 ```bash
-npm run client:dev
+npm run backend:dev
+npm run frontend:dev
 ```
+
+## Deployment structure
+
+- Deploy `apps/frontend` to Vercel
+- Deploy `apps/backend` to Render / Railway / any Node host
+- Keep `infra/` and `runtime/` out of production deploy roots
+
+Recommended deploy roots:
+
+- Frontend root directory: `apps/frontend`
+- Backend root directory: `apps/backend`
+
+Deployment references:
+
+- Frontend config: `apps/frontend/vercel.json`
+- Backend blueprint: `render.yaml`
 
 ## API summary
 

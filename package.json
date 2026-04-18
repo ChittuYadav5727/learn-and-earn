@@ -2,12 +2,14 @@
   "name": "learn-and-earn-workspace",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-    "client:dev": "npm --prefix client run dev",
-    "client:build": "npm --prefix client run build",
-    "server:dev": "npm --prefix server run dev",
-    "server:start": "npm --prefix server run start",
-    "server:seed": "npm --prefix server run seed"
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "frontend:dev": "npm --prefix apps/frontend run dev",
+    "frontend:build": "npm --prefix apps/frontend run build",
+    "frontend:preview": "npm --prefix apps/frontend run preview",
+    "backend:dev": "npm --prefix apps/backend run dev",
+    "backend:start": "npm --prefix apps/backend run start",
+    "backend:seed": "npm --prefix apps/backend run seed",
+    "build": "npm run frontend:build"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
